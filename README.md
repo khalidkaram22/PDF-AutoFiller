@@ -2,7 +2,7 @@
 
 **PDF-AutoFiller** is a web-based tool that allows you to generate customized PDF certificates by dynamically inserting data from Excel or CSV files into a pre-designed PDF template. Ideal for educators, trainers, event organizers, or anyone who needs to automate certificate or document creation in bulk.
 
-![PDF-AutoFiller Banner](https://your-image-url-if-any.com/banner.png)
+
 
 ---
 
@@ -42,7 +42,7 @@
 
 ## ✅ How to Use
 
-1. Open the app: [Live Demo](https://your-username.github.io/PDF-AutoFiller/)
+1. Open the app: [Live Demo](https://khalidkaram22.github.io/PDF-AutoFiller)
 2. Upload the following:
    - A **spreadsheet** (CSV/XLSX) containing the data
    - A **PDF template** for background layout
@@ -86,4 +86,4 @@ Contributions are welcome! Feel free to fork this repo and submit pull requests.
 ## 📧 Contact
 
 Made with 💻 by [Your Name]  
-📫 Reach me on [LinkedIn](https://www.linkedin.com/) | [Email](mailto:you@example.com)
+📫 Reach me on [LinkedIn]([https://www.linkedin.com/](https://www.linkedin.com/in/khalid-karam-44671b244/)) | [Email](khalid.karam11@gmail.com)
