@@ -46,6 +46,7 @@ addFieldBtn.onclick = () => {
   const input = document.createElement('div');
   input.className='field-input'; input.contentEditable=true;
   input.innerText='{{ColumnName}}';
+  input.style.direction = 'rtl';  // Support Arabic
 
   const select = document.createElement('select');
   select.innerHTML = `<option disabled selected>Bind column</option>`+availableHeaders.map(h=>`<option>${h}</option>`).join('');
@@ -73,12 +74,22 @@ addFieldBtn.onclick = () => {
     input.style.justifyContent = alignSelect.value==='center'?'center':(alignSelect.value==='right'?'flex-end':'flex-start');
   };
 
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = '❌';
+  deleteBtn.style.fontSize = '12px';
+  deleteBtn.style.padding = '2px 6px';
+  deleteBtn.onclick = () => {
+    templateArea.removeChild(wrapper);
+    fields = fields.filter(f => f.wrapper !== wrapper);
+  };
+
   const posLabel = document.createElement('div');
   posLabel.className='pos-label';
   posLabel.innerText = 'X:20, Y:20';
 
-  const ctrls = document.createElement('div'); ctrls.className='field-controls';
-  ctrls.append(select,fontSelect,sizeInput,widthInput,colorInput,alignSelect);
+  const ctrls = document.createElement('div');
+  ctrls.className='field-controls';
+  ctrls.append(select,fontSelect,sizeInput,widthInput,colorInput,alignSelect, deleteBtn);
 
   wrapper.append(input,ctrls,posLabel);
   templateArea.appendChild(wrapper);
@@ -88,7 +99,7 @@ addFieldBtn.onclick = () => {
 
 function makeDraggable(el,label){
   let drag=false,ox=0,oy=0;
-  el.onmousedown = e => { if(e.target.isContentEditable||['INPUT','SELECT'].includes(e.target.tagName))return; drag=true; ox = e.clientX-el.offsetLeft; oy = e.clientY-el.offsetTop; };
+  el.onmousedown = e => { if(e.target.isContentEditable||['INPUT','SELECT','BUTTON'].includes(e.target.tagName))return; drag=true; ox = e.clientX-el.offsetLeft; oy = e.clientY-el.offsetTop; };
   document.onmousemove = e => {
     if(!drag) return;
     const r = templateArea.getBoundingClientRect();
@@ -193,4 +204,4 @@ function splitTextIntoLines(text,font,size,maxWidth){
 function hexToRgb(hex){
   const m = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
   return m? {r:parseInt(m[1],16),g:parseInt(m[2],16),b:parseInt(m[3],16)} : {r:0,g:0,b:0};
-      }
+        }
