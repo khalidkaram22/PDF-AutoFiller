@@ -1,0 +1,51 @@
+.template-area {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border: 1px solid #ccc;
+  background: none center/contain no-repeat;
+  overflow: hidden;
+}
+
+.field-wrapper {
+  position: absolute;
+  user-select: none;
+  cursor: move;
+  padding: 4px;
+  background: #fffccf88;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.field-input {
+  background: rgba(255, 255, 0, 0.25);
+  border: 1px dashed #888;
+  padding: 4px;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 50px;
+  max-width: 1000px;
+  width: 200px;
+  min-height: calc(var(--font-size, 14px) * 1.2);
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  outline: none;
+}
+
+.field-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.pos-label {
+  font-size: 10px;
+  color: #555;
+  margin-top: 2px;
+}

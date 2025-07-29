@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PDF Certificate Editor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.0/dist/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4/dist/fontkit.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-start p-6">
+  <div class="bg-white p-4 rounded shadow w-full max-w-2xl">
+    <h2 class="text-xl font-bold mb-4 text-center">PDF Certificate Editor</h2>
+
+    <div class="mb-2"><label>Spreadsheet:</label><input id="sheetInput" type="file" accept=".xlsx,.xls,.csv" class="w-full border px-2 py-1"/></div>
+    <div class="mb-2"><label>Template PDF:</label><input id="pdfInput" type="file" accept="application/pdf" class="w-full border px-2 py-1"/></div>
+    <div class="mb-2"><label>Filename Column:</label><input id="filenameColumn" type="text" placeholder="Column name for filename" class="w-full border px-2 py-1"/></div>
+    <div class="mb-2"><label>Custom Font (optional):</label><input id="fontInput" type="file" accept=".ttf,.otf" class="w-full border px-2 py-1"/></div>
+
+    <button id="addFieldBtn" class="bg-blue-600 text-white px-4 py-1 rounded my-2">Add Text Field</button>
+    <div id="templateArea" class="template-area"></div>
+
+    <div id="fieldList" class="text-sm text-gray-600 mt-4"></div>
+    <button id="generateBtn" class="w-full bg-green-600 text-white py-2 mt-4 rounded">Generate PDFs & Download ZIP</button>
+    <div id="status" class="text-sm text-gray-700 mt-2"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
