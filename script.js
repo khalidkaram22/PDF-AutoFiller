@@ -1,5 +1,4 @@
-// script.js
-let fields = [], availableHeaders = [], fontBytes = null;
+let fields = [], availableHeaders = [], fontBytes = null, customFontName = null;
 
 const sheetInput = document.getElementById('sheetInput'),
       pdfInput = document.getElementById('pdfInput'),
@@ -14,6 +13,7 @@ const sheetInput = document.getElementById('sheetInput'),
 fontInput.addEventListener('change', async () => {
   const f = fontInput.files[0];
   fontBytes = f ? await f.arrayBuffer() : null;
+  customFontName = f ? f.name : null;
   status.textContent = f ? `Loaded font: ${f.name}` : 'Using default font';
 });
 
@@ -103,9 +103,15 @@ function makeDraggable(el,label){
 
 generateBtn.onclick = async ()=>{
   status.textContent='';
-  if(!sheetInput.files[0]||!pdfInput.files[0]||!filenameColumn.value.trim()||fields.length===0){ status.textContent='Upload everything and add at least one field.'; return; }
+  if(!sheetInput.files[0]||!pdfInput.files[0]||!filenameColumn.value.trim()||fields.length===0){
+    status.textContent='Upload everything and add at least one field.'; return;
+  }
+
   try{
-    const [sheetBuf,pdfBuf] = await Promise.all([sheetInput.files[0].arrayBuffer(), pdfInput.files[0].arrayBuffer()]);
+    const [sheetBuf,pdfBuf] = await Promise.all([
+      sheetInput.files[0].arrayBuffer(),
+      pdfInput.files[0].arrayBuffer()
+    ]);
     const wb = XLSX.read(sheetBuf,{type:'array'});
     const raw = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,defval:''});
     const headers = raw[0].map(h=>String(h).trim()), lower={};
@@ -126,8 +132,11 @@ generateBtn.onclick = async ()=>{
 
       for(const f of fields){
         const txt = f.input.innerText.replace(/{{\s*([^}]+)\s*}}/gi,(_,k)=> row[lower[k.toLowerCase()]]||'');
-        const embedFont = fontBytes ? await pdfDoc.embedFont(fontBytes)
-                                     : await pdfDoc.embedFont(PDFLib.StandardFonts[f.fontSelect.value] || PDFLib.StandardFonts.Helvetica);
+
+        const embedFont = fontBytes
+          ? await pdfDoc.embedFont(fontBytes)
+          : await pdfDoc.embedFont(PDFLib.StandardFonts[f.fontSelect.value] || PDFLib.StandardFonts.Helvetica);
+
         const sz = parseInt(f.sizeInput.value)||14;
         const xPDF = f.wrapper.offsetLeft * scaleX;
         const yPDF = ph - f.wrapper.offsetTop * scaleY - sz;
@@ -142,8 +151,13 @@ generateBtn.onclick = async ()=>{
           let drawX = xPDF;
           if(align==='center') drawX = xPDF + (widthBox-lw)/2;
           else if(align==='right') drawX = xPDF + widthBox-lw;
-          page.drawText(line,{ x:drawX, y:yPDF-offsetY, size:sz, font:embedFont,
-            color: PDFLib.rgb(color.r/255,color.g/255,color.b/255), maxWidth: widthBox });
+
+          page.drawText(line, {
+            x: drawX, y: yPDF-offsetY, size: sz, font: embedFont,
+            color: PDFLib.rgb(color.r/255,color.g/255,color.b/255),
+            maxWidth: widthBox
+          });
+
           offsetY += sz*1.2;
         }
       }
@@ -157,7 +171,10 @@ generateBtn.onclick = async ()=>{
     saveAs(blob,'merged.zip');
     status.textContent = `Generated ${rows.length} PDFs successfully!`;
 
-  }catch(err){ console.error(err); status.textContent='Error: '+err.message; }
+  }catch(err){
+    console.error(err);
+    status.textContent='Error: '+err.message;
+  }
 };
 
 function splitTextIntoLines(text,font,size,maxWidth){
@@ -176,4 +193,4 @@ function splitTextIntoLines(text,font,size,maxWidth){
 function hexToRgb(hex){
   const m = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
   return m? {r:parseInt(m[1],16),g:parseInt(m[2],16),b:parseInt(m[3],16)} : {r:0,g:0,b:0};
-}
+      }
