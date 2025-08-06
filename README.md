@@ -56,9 +56,7 @@
 ## 🌐 Live Demo
 
 Try the app instantly:  
-🔗 [https://your-username.github.io/PDF-AutoFiller](https://khalidkaram22.github.io/PDF-AutoFiller)
-
-> Replace `your-username` with your GitHub username.
+🔗 [https://your-khalidkaram22.github.io/PDF-AutoFiller](https://khalidkaram22.github.io/PDF-AutoFiller)
 
 ---
 
@@ -85,5 +83,5 @@ Contributions are welcome! Feel free to fork this repo and submit pull requests.
 
 ## 📧 Contact
 
-Made with 💻 by [Your Name]  
+Made with 💻 by [Khalid karam]  
 📫 Reach me on [LinkedIn]([https://www.linkedin.com/](https://www.linkedin.com/in/khalid-karam-44671b244/)) | [Email](khalid.karam11@gmail.com)
