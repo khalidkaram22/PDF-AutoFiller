@@ -83,5 +83,5 @@ Contributions are welcome! Feel free to fork this repo and submit pull requests.
 
 ## 📧 Contact
 
-Made with 💻 by [Khalid karam]  
-📫 Reach me on [LinkedIn]([https://www.linkedin.com/](https://www.linkedin.com/in/khalid-karam-44671b244/)) | [Email](khalid.karam11@gmail.com)
+Made with 💻 by ## Khalid karam 
+📫 Reach me on [LinkedIn](https://www.linkedin.com/in/khalid-karam-44671b244/) | [Email](khalid.karam11@gmail.com)
