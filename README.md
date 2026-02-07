@@ -37,7 +37,6 @@
 └── README.md # Project documentation
 
 
-
 ---
 
 ## ✅ How to Use
@@ -56,7 +55,7 @@
 ## 🌐 Live Demo
 
 Try the app instantly:  
-🔗 [https://your-khalidkaram22.github.io/PDF-AutoFiller](https://khalidkaram22.github.io/PDF-AutoFiller)
+🔗 [PDF-AutoFiller Live Demo ](https://khalidkaram22.github.io/PDF-AutoFiller)
 
 ---
 
@@ -66,12 +65,6 @@ Try the app instantly:
 - Event badges
 - Student report cards
 - Bulk invoice or letter generation
-
----
-
-## 📃 License
-
-This project is licensed under the **MIT License** — feel free to use and modify it.
 
 ---
 
